@@ -116,6 +116,8 @@ public class ForecastFragment extends Fragment {
         return rootView;
     }
 
+    // This must not be a static class,
+    // otherwise you cannot access the global mForecastAdapter!
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
@@ -328,6 +330,8 @@ public class ForecastFragment extends Fragment {
                     mForecastAdapter.add(dayForecastStr);
                 }
                 // New data is back from the server.  Hooray!
+                // This would be the call if we were Honeycomb or above:
+                // mForecastAdapter.addAll(result);
             }
         }
     }
